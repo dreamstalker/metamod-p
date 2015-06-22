@@ -4,6 +4,8 @@ MODNAME = metamod
 EXTRA_CFLAGS += -D__METAMOD_BUILD__ 
 #-DMETA_PERFMON
 
+EXTRA_CFLAGS += -DMM_REHLDS_OPT
+
 SRCFILES = api_hook.cpp api_info.cpp commands_meta.cpp conf_meta.cpp \
 	dllapi.cpp engine_api.cpp engineinfo.cpp game_support.cpp \
 	game_autodetect.cpp h_export.cpp linkgame.cpp linkplug.cpp \
