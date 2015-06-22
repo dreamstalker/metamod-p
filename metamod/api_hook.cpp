@@ -472,6 +472,10 @@ BEGIN_API_CALLER_FUNC(void, 2i2pi2p)
 END_API_CALLER_FUNC_void( (int, int, const void*, const void*, int, const void*, const void*), (p->i1, p->i2, p->p1, p->p2, p->i3, p->p3, p->p4) );
 
 //-
+BEGIN_API_CALLER_FUNC(void, 2i2pi2v3)
+END_API_CALLER_FUNC_void((int, int, const void*, const void*, int, Vector, Vector), (p->i1, p->i2, p->p1, p->p2, p->i3, p->v1, p->v2));
+
+//-
 BEGIN_API_CALLER_FUNC(void, 2p)
 END_API_CALLER_FUNC_void( (const void*, const void*), (p->p1, p->p2) );
 

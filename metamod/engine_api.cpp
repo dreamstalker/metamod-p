@@ -134,8 +134,12 @@ static void mm_SetModel(edict_t *e, const char *m) {
 	RETURN_API_void()
 }
 static int mm_ModelIndex(const char *m) {
+#ifdef MM_REHLDS_OPT
+	return Engine.funcs->pfnModelIndex(m);
+#else
 	META_ENGINE_HANDLE(int, 0, FN_MODELINDEX, pfnModelIndex, p, (m));
 	RETURN_API(int)
+#endif
 }
 static int mm_ModelFrames(int modelIndex) {
 	META_ENGINE_HANDLE(int, 0, FN_MODELFRAMES, pfnModelFrames, i, (modelIndex));
@@ -438,8 +442,12 @@ static int mm_EntOffsetOfPEntity(const edict_t *pEdict) {
 	RETURN_API(int)
 }
 static int mm_IndexOfEdict(const edict_t *pEdict) {
+#ifdef MM_REHLDS_OPT
+	return Engine.funcs->pfnIndexOfEdict(pEdict);
+#else
 	META_ENGINE_HANDLE(int, 0, FN_INDEXOFEDICT, pfnIndexOfEdict, p, (pEdict));
 	RETURN_API(int)
+#endif
 }
 static edict_t *mm_PEntityOfEntIndex(int iEntIndex) {
 	META_ENGINE_HANDLE(edict_t *, NULL, FN_PENTITYOFENTINDEX, pfnPEntityOfEntIndex, i, (iEntIndex));
@@ -721,8 +729,12 @@ static unsigned char *mm_SetFatPAS( float *org ) {
 }
 
 static int mm_CheckVisibility( const edict_t *entity, unsigned char *pset ) {
+#ifdef MM_REHLDS_OPT
+	return Engine.funcs->pfnCheckVisibility(entity, pset);
+#else
 	META_ENGINE_HANDLE(int, 0, FN_CHECKVISIBILITY, pfnCheckVisibility, 2p, (entity, pset));
 	RETURN_API(int)
+#endif
 }
 
 static void mm_DeltaSetField( struct delta_s *pFields, const char *fieldname ) {
@@ -737,10 +749,16 @@ static void mm_DeltaAddEncoder( char *name, void (*conditionalencode)( struct de
 	META_ENGINE_HANDLE_void(FN_DELTAADDENCODER, pfnDeltaAddEncoder, 2p, (name, (void*)conditionalencode));
 	RETURN_API_void()
 }
+
 static int mm_GetCurrentPlayer( void ) {
+#ifdef MM_REHLDS_OPT
+	return Engine.funcs->pfnGetCurrentPlayer();
+#else
 	META_ENGINE_HANDLE(int, 0, FN_GETCURRENTPLAYER, pfnGetCurrentPlayer, void, (VOID_ARG));
 	RETURN_API(int)
+#endif
 }
+
 static int mm_CanSkipPlayer( const edict_t *player ) {
 	META_ENGINE_HANDLE(int, 0, FN_CANSKIPPLAYER, pfnCanSkipPlayer, p, (player));
 	RETURN_API(int)
@@ -753,9 +771,14 @@ static void mm_DeltaSetFieldByIndex( struct delta_s *pFields, int fieldNumber ) 
 	META_ENGINE_HANDLE_void(FN_DELTASETFIELDBYINDEX, pfnDeltaSetFieldByIndex, pi, (pFields, fieldNumber));
 	RETURN_API_void()
 }
+
 static void mm_DeltaUnsetFieldByIndex( struct delta_s *pFields, int fieldNumber ) {
+#ifdef MM_REHLDS_OPT
+	Engine.funcs->pfnDeltaUnsetFieldByIndex(pFields, fieldNumber);
+#else
 	META_ENGINE_HANDLE_void(FN_DELTAUNSETFIELDBYINDEX, pfnDeltaUnsetFieldByIndex, pi, (pFields, fieldNumber));
 	RETURN_API_void()
+#endif
 }
 
 static void mm_SetGroupMask( int mask, int op ) {

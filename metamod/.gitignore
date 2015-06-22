@@ -1,3 +1,7 @@
 msgs/
 opt.*/
 debug.*/
+Release
+Debug
+*.sdf
+*.suo

@@ -267,6 +267,13 @@ PACK_ARGS_CLASS_HEADER(2i2pi2p, (int _i1, int _i2, const void *_p1, const void *
 	const void *p3,*p4;
 PACK_ARGS_END
 
+PACK_ARGS_CLASS_HEADER(2i2pi2v3, (int _i1, int _i2, const void *_p1, const void *_p2, int _i3, Vector _v1, Vector _v2)) : i1(_i1), i2(_i2), p1(_p1), p2(_p2), i3(_i3), v1(_v1), v2(_v2) {};
+int i1, i2;
+const void *p1, *p2;
+int i3;
+Vector v1, v2;
+PACK_ARGS_END
+
 PACK_ARGS_CLASS_HEADER(2pui, (const void *_p1, const void *_p2, unsigned int _ui1)): p1(_p1), p2(_p2), ui1(_ui1) {}; 
 	const void *p1,*p2;
 	unsigned int ui1;
@@ -333,6 +340,7 @@ EXTERN_API_CALLER_FUNCTION(void, 2i);
 EXTERN_API_CALLER_FUNCTION(int, 2i);
 EXTERN_API_CALLER_FUNCTION(void, 2i2p);
 EXTERN_API_CALLER_FUNCTION(void, 2i2pi2p);
+EXTERN_API_CALLER_FUNCTION(void, 2i2pi2v3);
 EXTERN_API_CALLER_FUNCTION(void, 2p);
 EXTERN_API_CALLER_FUNCTION(ptr, 2p);
 EXTERN_API_CALLER_FUNCTION(int, 2p);

@@ -269,12 +269,18 @@ static void mm_UpdateClientData (const struct edict_s *ent, int sendweapons, str
 	META_DLLAPI_HANDLE_void(FN_UPDATECLIENTDATA, pfnUpdateClientData, pip, (ent, sendweapons, cd));
 	RETURN_API_void();
 }
+
 static int mm_AddToFullPack(struct entity_state_s *state, int e, edict_t *ent, edict_t *host, int hostflags, int player, unsigned char *pSet) {
+#ifdef MM_REHLDS_OPT
+	return GameDLL.funcs.dllapi_table->pfnAddToFullPack(state, e, ent, host, hostflags, player, pSet);
+#else
 	META_DLLAPI_HANDLE(int, 0, FN_ADDTOFULLPACK, pfnAddToFullPack, pi2p2ip, (state, e, ent, host, hostflags, player, pSet));
 	RETURN_API(int);
+#endif
 }
-static void mm_CreateBaseline(int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs) {
-	META_DLLAPI_HANDLE_void(FN_CREATEBASELINE, pfnCreateBaseline, 2i2pi2p, (player, eindex, baseline, entity, playermodelindex, (float*)player_mins, (float*)player_maxs));
+
+static void mm_CreateBaseline(int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector player_mins, Vector player_maxs) {
+	META_DLLAPI_HANDLE_void(FN_CREATEBASELINE, pfnCreateBaseline, 2i2pi2v3, (player, eindex, baseline, entity, playermodelindex, player_mins, player_maxs));
 	RETURN_API_void();
 }
 static void mm_RegisterEncoders(void) {
