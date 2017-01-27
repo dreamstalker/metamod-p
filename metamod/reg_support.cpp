@@ -122,7 +122,7 @@ void DLLHIDDEN meta_command_handler(void) {
 // The string handed to the engine is just a strdup() of the plugin's
 // string.  The function pointer handed to the engine is actually a pointer
 // to a generic command-handler function (see above).
-void DLLHIDDEN meta_AddServerCommand(char *cmd_name, void (*function) (void)) {
+void DLLHIDDEN meta_AddServerCommand(const char *cmd_name, void (*function) (void)) {
 	MPlugin *iplug=NULL; 
 	MRegCmd *icmd=NULL;
 
